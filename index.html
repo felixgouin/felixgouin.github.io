@@ -14,45 +14,7 @@
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/normalize.css" data-silex-static="">
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/front-end.css" data-silex-static="">
     <style type="text/css" class="silex-style"></style>
-    <script type="text/javascript" class="silex-script">
-        function gotopage(diff = 1){
-            // variables for the whole function
-            var newPage;
-            var initialPage;
-        
-            //probably window.location.hash doesn't work in all environments?? also what about iframes?
-            if (window.location.hash && window.location.hash.indexOf('#!') >= 0) {
-                initialPage = window.location.hash.substr(2);
-            } else {
-                //use first page if now hash defined
-                initialPage = $('a.page-element:first-of-type').attr('id');
-            }
-        
-            //go through pages to see which one is active
-             $('a.page-element').each(function( index ) {
-                      if ($( this ).attr('id') == initialPage) { //found active page
-                           if ((index + diff) >= $('a.page-element').length) { //new page would be after the last > go to first
-                              newPage = $('a.page-element:first-of-type').attr('id');
-                          } else if ((index + diff) < 0) { //new page would be before the first > go to last
-                              newPage = $('a.page-element').eq($('a.page-element').length - 1).attr('id');
-        
-                          } else { //go forward or backwards as requested
-                            newPage = $('a.page-element').eq(index + diff).attr('id');
-                          }
-                      } 
-                  }); 
-            window.location.hash = '#!'+ newPage;
-        }
-        
-        //keyboard binding
-        $(window).keydown(function( event ) {
-          if ( event.which == 37 ) {
-           gotopage(-1);
-          } else if (event.which == 39) {
-             gotopage(1); 
-          }
-        });
-    </script>
+    <script type="text/javascript" class="silex-script"></script>
     <style class="silex-inline-styles" type="text/css">
         .body-initial {
             background-color: rgba(255,255,255,1); 
