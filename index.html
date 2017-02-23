@@ -14,76 +14,7 @@
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/normalize.css" data-silex-static="">
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/front-end.css" data-silex-static="">
     <style type="text/css" class="silex-style"></style>
-    <script type="text/javascript" class="silex-script">
-        / wait for the HTML to be fully loaded
-        $(document).ready(function () {    
-            // init the mouse parallax effect
-            $('.mouse-parallax').mousemove(function (e) {
-                mouseUpdate(e);
-            });    
-            // init the scroll parallax effect
-            $(window).scroll(function (e) {
-                scrollUpdate();
-            });
-            scrollUpdate();
-        });
-        // mouse parallax effect
-        function mouseUpdate(e) {
-            var container = $('.mouse-parallax');
-            $('.mouse-parallax .layer-one').each(function() {
-                parallax(e.pageX, e.pageY, this, container, 1);
-            });
-            $('.mouse-parallax .layer-two').each(function() {
-                parallax(e.pageX, e.pageY, this, container, 2);
-            });
-            $('.mouse-parallax .layer-three').each(function() {
-                parallax(e.pageX, e.pageY, this, container, 3);
-            });
-        }
-        // scroll parallax effect
-        function scrollUpdate() {
-          // just like for the mouse, but with the mouse at the center of the screen
-          var centerY = window.scrollY + ($(window).height() / 2);
-          var centerX = window.scrollX + ($(window).width() / 2);
-          var container = $('.scroll-parallax');
-          $('.scroll-parallax .layer-one').each(function() {
-              parallax(centerX, centerY, this, container, 1);
-          });
-          $('.scroll-parallax .layer-two').each(function() {
-              parallax(centerX, centerY, this, container, 2);
-          });
-          $('.scroll-parallax .layer-three').each(function() {
-              parallax(centerX, centerY, this, container, 3);
-          });
-        }
-        // parallax effect
-        function parallax(pageX, pageY, target, container, layer) {
-            var layer_coeff = 10 / layer;
-            var offset = {};
-            var parentOffset = $(container).offset() || {};
-            var initialOffsetX = $(target).attr('data-paralax-initial-offset-x');
-            var initialOffsetY = $(target).attr('data-paralax-initial-offset-y');
-            if(typeof initialOffsetX === 'undefined') $(target).attr('data-paralax-initial-offset-x', $(target).offset().left - parentOffset.left - ($(container).width() / 2));
-            if(typeof initialOffsetY === 'undefined') $(target).attr('data-paralax-initial-offset-y', $(target).offset().top - parentOffset.top - ($(container).height() / 2));
-            // compute layer positions relatively to the parent position
-            pageX -= parentOffset.left;
-            pageY -= parentOffset.top;
-            // compute layer X position
-            var x = ($(window).width() - $(target).width()) / 2 - (pageX - ($(window).width() / 2)) / layer_coeff;
-            offset.left = x;
-            // compute layer Y position
-            var y = ($(window).height() - $(target).height()) / 2 - (pageY - ($(window).height() / 2)) / layer_coeff;
-            offset.top = y;
-            // take the offset of the container into account
-            if(parentOffset.left) offset.left += parentOffset.left;
-            if(parentOffset.top) offset.top += parentOffset.top;
-            // take the initial offset into account
-            offset.left += parseInt(initialOffsetX);
-            offset.top += parseInt(initialOffsetY);
-            // apply offset to the layer
-            $(target).offset(offset);
-        }
-    </script>
+    <script type="text/javascript" class="silex-script"></script>
     <style class="silex-inline-styles" type="text/css">
         .body-initial {
             background-color: rgba(255,255,255,1); 
@@ -92,11 +23,10 @@
             top: 100px; 
             left: NaNpx; 
             background-color: transparent; 
-            min-width: 1200px; 
         }
         .silex-id-1478366444112-0 {
             min-height: 100px; 
-            background-color: rgba(255,255,255,1); 
+            background-color: transparent; 
             width: 1200px; 
         }
         .silex-id-1487880630091-0 {
@@ -110,12 +40,6 @@
             width: 53px; 
             top: 79px; 
             left: 528px; 
-        }
-        .silex-id-1487883821297-5 {
-            min-height: 20px; 
-            width: 53px; 
-            top: 78px; 
-            left: 594px; 
         }
         .silex-id-1487883832573-6 {
             min-height: 20px; 
@@ -134,6 +58,12 @@
             width: 97px; 
             top: 78px; 
             left: 792px; 
+        }
+        .silex-id-1487883821297-5 {
+            min-height: 20px; 
+            width: 53px; 
+            top: 77px; 
+            left: 592px; 
         }
         .silex-id-1474394621033-3 {
             top: 100px; 
@@ -166,7 +96,7 @@
     </style>
     <title>Félix Gouin Site</title>
     <script type="text/javascript" class="silex-json-styles">
-        [{"desktop":{"body-initial":{"background-color":"rgba(255,255,255,1)"},"silex-id-1474394621033-3":{"top":"100px","left":"0px","min-width":"1200px"},"silex-id-1474394621032-2":{"min-height":"606px","background-color":"transparent","width":"1200px","top":"0px","left":"150px"},"silex-id-1474394605264-1":{"min-height":"100px","width":"100px","top":"100px","left":"100px"},"silex-id-1474394605263-0":{"min-height":"100px","background-color":"transparent"},"silex-id-1442914737143-3":{"min-height":"53px","width":"349px","top":"29px","left":"430px"},"silex-id-1478366444112-0":{"min-height":"100px","background-color":"transparent","width":"1200px"},"silex-id-1478366444112-1":{"top":"100px","left":"NaNpx","background-color":"transparent"},"silex-id-1478366450713-2":{"min-height":"124px","background-color":"transparent","width":"1200px"},"silex-id-1478366450713-3":{"top":"706px","left":"0px","background-color":"transparent"},"silex-id-1487880630091-0":{"min-height":"20px","width":"53px","top":"80px","left":"463px"},"silex-id-1487883774187-4":{"min-height":"20px","width":"53px","top":"79px","left":"528px"},"silex-id-1487883821297-5":{"min-height":"20px","width":"53px","top":"78px","left":"594px"},"silex-id-1487883832573-6":{"min-height":"20px","width":"53px","top":"78px","left":"660px"},"silex-id-1487883846452-7":{"min-height":"20px","width":"53px","top":"78px","left":"726px"},"silex-id-1487883860188-8":{"min-height":"20px","width":"97px","top":"78px","left":"792px"}},"mobile":{},"componentData":{}}]
+        [{"desktop":{"body-initial":{"background-color":"rgba(255,255,255,1)"},"silex-id-1474394621033-3":{"top":"100px","left":"0px","min-width":"1200px"},"silex-id-1474394621032-2":{"min-height":"606px","background-color":"transparent","width":"1200px","top":"0px","left":"150px"},"silex-id-1474394605264-1":{"min-height":"100px","width":"100px","top":"100px","left":"100px"},"silex-id-1474394605263-0":{"min-height":"100px","background-color":"transparent"},"silex-id-1442914737143-3":{"min-height":"53px","width":"349px","top":"29px","left":"430px"},"silex-id-1478366444112-0":{"min-height":"100px","background-color":"transparent","width":"1200px"},"silex-id-1478366444112-1":{"top":"100px","left":"NaNpx","background-color":"transparent"},"silex-id-1478366450713-2":{"min-height":"124px","background-color":"transparent","width":"1200px"},"silex-id-1478366450713-3":{"top":"706px","left":"0px","background-color":"transparent"},"silex-id-1487880630091-0":{"min-height":"20px","width":"53px","top":"80px","left":"463px"},"silex-id-1487883774187-4":{"min-height":"20px","width":"53px","top":"79px","left":"528px"},"silex-id-1487883821297-5":{"min-height":"20px","width":"53px","top":"77px","left":"592px"},"silex-id-1487883832573-6":{"min-height":"20px","width":"53px","top":"78px","left":"660px"},"silex-id-1487883846452-7":{"min-height":"20px","width":"53px","top":"78px","left":"726px"},"silex-id-1487883860188-8":{"min-height":"20px","width":"97px","top":"78px","left":"792px"}},"mobile":{},"componentData":{}}]
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.2" data-silex-viewport="">
 
@@ -183,15 +113,15 @@
 
 
 
+
+    <meta name="description" content="this is my website about my project ">
+    <link href="../../../../../../../16681856_1888236254741542_3751069753733943757_n.jpg" rel="shortcut icon">
+
+
+
     <style id="current-page-style">
         .page-home{display:inherit; }
     </style>
-    <meta name="description" content="this is my website about my project ">
-    <link href="16681856_1888236254741542_3751069753733943757_n.jpg" rel="shortcut icon">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Félix Gouin Website">
-    <meta name="og:title" content="Félix Gouin Website">
-    <meta name="twitter:site" content="felixbnbw">
     <!-- Silex HEAD tag do not remove -->
     <script type="text/javascript" id="cookiebanner" src="https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.0.0/cookiebanner.min.js"></script>
     <!-- End of Silex HEAD tag do not remove -->
@@ -207,23 +137,25 @@
         data-silex-type="page" class="page-element">Music</a><a id="page-graphic-work" data-silex-type="page" class="page-element">Graphic work</a></div>
     <div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366444112-1 section-element website-min-width" data-silex-id="silex-id-1478366444112-1" style="">
         <div data-silex-type="container" class="editable-style silex-element-content silex-id-1478366444112-0 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1478366444112-0">
-            <div data-silex-type="text" class="editable-style silex-id-1487880630091-0 text-element hide-on-mobile" data-silex-id="silex-id-1487880630091-0" data-silex-href="#!page-home">
+            <div data-silex-type="text" class="editable-style silex-id-1487880630091-0 text-element hide-on-mobile page-link-active" data-silex-id="silex-id-1487880630091-0" data-silex-href="#!page-home">
                 <div class="silex-element-content normal">Home</div>
             </div>
-            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883774187-4 page-home paged-element" data-silex-id="silex-id-1487883774187-4" data-silex-href="#!page-home">
+            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883774187-4 page-home paged-element page-link-active" data-silex-id="silex-id-1487883774187-4" data-silex-href="#!page-home">
                 <div class="silex-element-content normal">About</div>
             </div>
-            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883821297-5 page-home paged-element" data-silex-id="silex-id-1487883821297-5" data-silex-href="#!page-home">
-                <div class="silex-element-content normal">Music</div>
-            </div>
-            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883832573-6 page-home paged-element" data-silex-id="silex-id-1487883832573-6" data-silex-href="#!page-home">
+
+            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883832573-6 page-home paged-element page-link-active" data-silex-id="silex-id-1487883832573-6" data-silex-href="#!page-home">
                 <div class="silex-element-content normal">Photos</div>
             </div>
-            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883846452-7 page-home paged-element" data-silex-id="silex-id-1487883846452-7" data-silex-href="#!page-home">
+            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883846452-7 page-home paged-element page-link-active" data-silex-id="silex-id-1487883846452-7" data-silex-href="#!page-home">
                 <div class="silex-element-content normal">Videos</div>
             </div>
-            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883860188-8 page-home paged-element" data-silex-id="silex-id-1487883860188-8" data-silex-href="#!page-home">
+            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883860188-8 page-home paged-element page-link-active" data-silex-id="silex-id-1487883860188-8" data-silex-href="#!page-home">
                 <div class="silex-element-content normal">graphic work</div>
+            </div>
+
+            <div data-silex-type="text" class="editable-style text-element hide-on-mobile silex-id-1487883821297-5 page-home paged-element page-link-active" data-silex-id="silex-id-1487883821297-5" data-silex-href="#!page-home">
+                <div class="silex-element-content normal">Music</div>
             </div>
         </div>
     </div>
@@ -240,6 +172,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 
 
 
