@@ -14,7 +14,76 @@
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/normalize.css" data-silex-static="">
     <link rel="stylesheet" href="//editor.silex.me/static/2.7/front-end.css" data-silex-static="">
     <style type="text/css" class="silex-style"></style>
-    <script type="text/javascript" class="silex-script"></script>
+    <script type="text/javascript" class="silex-script">
+        / wait for the HTML to be fully loaded
+        $(document).ready(function () {    
+            // init the mouse parallax effect
+            $('.mouse-parallax').mousemove(function (e) {
+                mouseUpdate(e);
+            });    
+            // init the scroll parallax effect
+            $(window).scroll(function (e) {
+                scrollUpdate();
+            });
+            scrollUpdate();
+        });
+        // mouse parallax effect
+        function mouseUpdate(e) {
+            var container = $('.mouse-parallax');
+            $('.mouse-parallax .layer-one').each(function() {
+                parallax(e.pageX, e.pageY, this, container, 1);
+            });
+            $('.mouse-parallax .layer-two').each(function() {
+                parallax(e.pageX, e.pageY, this, container, 2);
+            });
+            $('.mouse-parallax .layer-three').each(function() {
+                parallax(e.pageX, e.pageY, this, container, 3);
+            });
+        }
+        // scroll parallax effect
+        function scrollUpdate() {
+          // just like for the mouse, but with the mouse at the center of the screen
+          var centerY = window.scrollY + ($(window).height() / 2);
+          var centerX = window.scrollX + ($(window).width() / 2);
+          var container = $('.scroll-parallax');
+          $('.scroll-parallax .layer-one').each(function() {
+              parallax(centerX, centerY, this, container, 1);
+          });
+          $('.scroll-parallax .layer-two').each(function() {
+              parallax(centerX, centerY, this, container, 2);
+          });
+          $('.scroll-parallax .layer-three').each(function() {
+              parallax(centerX, centerY, this, container, 3);
+          });
+        }
+        // parallax effect
+        function parallax(pageX, pageY, target, container, layer) {
+            var layer_coeff = 10 / layer;
+            var offset = {};
+            var parentOffset = $(container).offset() || {};
+            var initialOffsetX = $(target).attr('data-paralax-initial-offset-x');
+            var initialOffsetY = $(target).attr('data-paralax-initial-offset-y');
+            if(typeof initialOffsetX === 'undefined') $(target).attr('data-paralax-initial-offset-x', $(target).offset().left - parentOffset.left - ($(container).width() / 2));
+            if(typeof initialOffsetY === 'undefined') $(target).attr('data-paralax-initial-offset-y', $(target).offset().top - parentOffset.top - ($(container).height() / 2));
+            // compute layer positions relatively to the parent position
+            pageX -= parentOffset.left;
+            pageY -= parentOffset.top;
+            // compute layer X position
+            var x = ($(window).width() - $(target).width()) / 2 - (pageX - ($(window).width() / 2)) / layer_coeff;
+            offset.left = x;
+            // compute layer Y position
+            var y = ($(window).height() - $(target).height()) / 2 - (pageY - ($(window).height() / 2)) / layer_coeff;
+            offset.top = y;
+            // take the offset of the container into account
+            if(parentOffset.left) offset.left += parentOffset.left;
+            if(parentOffset.top) offset.top += parentOffset.top;
+            // take the initial offset into account
+            offset.left += parseInt(initialOffsetX);
+            offset.top += parseInt(initialOffsetY);
+            // apply offset to the layer
+            $(target).offset(offset);
+        }
+    </script>
     <style class="silex-inline-styles" type="text/css">
         .body-initial {
             background-color: rgba(255,255,255,1); 
@@ -23,10 +92,11 @@
             top: 100px; 
             left: NaNpx; 
             background-color: transparent; 
+            min-width: 1200px; 
         }
         .silex-id-1478366444112-0 {
             min-height: 100px; 
-            background-color: transparent; 
+            background-color: rgba(255,255,255,1); 
             width: 1200px; 
         }
         .silex-id-1487880630091-0 {
