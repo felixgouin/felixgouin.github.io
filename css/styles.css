@@ -70,11 +70,11 @@
             background-size: cover; 
         }
         .silex-id-1474394621032-2 {
-            min-height: 777px; 
-            background-color: transparent; 
             width: 960px; 
             top: 0px; 
             left: 670px; 
+            min-height: 777px; 
+            background-color: transparent; 
             background-attachment: fixed; 
             background-position: center center; 
             background-size: cover; 
@@ -107,9 +107,13 @@
         }
         .silex-id-1487945502920-0 {
             width: 107px; 
-            top: 176px; 
-            left: 144px; 
+            top: 160px; 
+            left: 126px; 
             display: inline-block; 
+            padding: 1em; 
+            color: white; 
+            background-color: #79BD9A; 
+            text-decoration: none; 
         }
         .silex-id-1478366450713-3 {
             top: 188px; 
